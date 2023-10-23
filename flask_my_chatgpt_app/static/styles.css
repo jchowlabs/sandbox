@@ -1,0 +1,31 @@
+.chat-container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.user-message, .gpt-response {
+    margin: 0;
+    padding: 5px;
+}
+
+.user-message {
+    border-radius: 5px;
+}
+
+.gpt-response {
+    border-radius: 5px;
+}
+
+#response {
+    height: auto;
+    height: 300px;
+}
+
+.response-title {
+    font-weight: bold;
+}
+
+.submit-button {
+    margin-top: 10px;
+}

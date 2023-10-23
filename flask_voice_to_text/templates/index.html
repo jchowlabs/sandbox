@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice-To-Text</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 class="small-title">Voice-To-Text</h1>
+    <button id="startRecording">Start Recording</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#startRecording").click(function () {
+                $("#startRecording").css("background-color", "#ff6347"); 
+                $.post("/recognize", {}, function (data) {
+                    $("#result").text(data);
+                    $("#startRecording").css("background-color", "#007bff");
+                });
+            });
+        });
+    </script>
+</body>
+</html>

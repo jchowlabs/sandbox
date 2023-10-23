@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summarizer</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Summarizer</h1>
+        <form method="post">
+            <label for="original_text">Original Text:</label>
+            <textarea id="original_text" name="original_text" rows="10" cols="50">{{ original_text }}</textarea>
+            <br>
+            <label for="summarized_text">Summarized Text:</label>
+            <textarea id="summarized_text" name="summarized_text" rows="10" cols="50" readonly>{{ summarized_text }}</textarea>
+            <br>
+            <label for="max_length">Summarized Text Length:</label>
+            <input type="range" id="max_length" name="max_length" min="25" max="225" step="1" value="125">
+            <span id="max_length_value">225</span>  
+            <br>
+            <div class="button-container"><input type="submit" value="Summarize"></div>
+        </form>
+    </div>
+    <script>
+        const maxLengthInput = document.getElementById("max_length");
+        const maxLengthValue = document.getElementById("max_length_value");
+        maxLengthValue.textContent = maxLengthInput.value; 
+        maxLengthInput.addEventListener("input", function() 
+        {
+            maxLengthValue.textContent = maxLengthInput.value;
+        });
+    </script>
+</body>
+</html>
