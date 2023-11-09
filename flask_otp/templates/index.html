@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login Prompt</h1>
+        <form action="/" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <label for="user_otp">Passcode:</label>
+            <input type="text" id="user_otp" name="user_otp" required>
+            <br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <br>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <h3>Passcode:</h3>
+        <p id="randomNumber">{{ number }}</p>
+        <p id="countdown">Time remaining: <span id="timer">15</span> seconds</p>
+    </div>
+
+    <script>
+        function updateTimer(seconds) {
+            document.getElementById('timer').textContent = seconds;
+        }
+        setInterval(function () {
+            location.reload();
+        }, 15000);
+
+        // Countdown timer
+        var countdown = 15;
+        updateTimer(countdown);
+
+        var countdownInterval = setInterval(function () {
+            countdown -= 1;
+            updateTimer(countdown);
+
+            if (countdown <= 0) {
+                countdown = 15; // Reset the countdown
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
