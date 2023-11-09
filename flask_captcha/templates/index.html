@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form method="post" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}
+            <label for="username">Username:</label>
+            {{ form.username() }}
+            <br>
+            <label for="password">Password:</label>
+            {{ form.password() }}
+            <br>
+            {{ form.recaptcha() }}
+            <br>
+            <button type="submit">{{ form.submit.label }}</button>
+        </form>
+    </div>
+</body>
+</html>
