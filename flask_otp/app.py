@@ -3,27 +3,28 @@ import random
 import threading
 import time
 
+# creates Flask app
 app = Flask(__name__)
 
-# Variables to store the current random number, username, and password
-current_number = None
+# hard coded global variables for demo purposes
 username = "jason"
 password = "Hello123!!"
+current_otp = None
 message = None
 
-# Function to generate a random 6-digit number
+# generates random number every 15 seconds
 def generate_otp():
     global current_otp
     while True:
         current_otp = random.randint(100000, 999999)
-        time.sleep(10)
+        time.sleep(15)
 
-# Start a separate thread for the number generation
+# starts new thread for generate_otp function
 number_thread = threading.Thread(target=generate_otp)
 number_thread.daemon = True
 number_thread.start()
 
-# Route to render the HTML template with the random number and handle form submission
+# route for index.html page that handles username, password and otp input and validation
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global message
@@ -31,7 +32,6 @@ def index():
         username = request.form['username']
         password = request.form['password']
         user_otp = request.form['user_otp']
-
         if (
             username == username
             and password == password
@@ -44,7 +44,7 @@ def index():
 
     return render_template('index.html', number=current_otp, message=message)
 
-# Route for the dashboard page
+# route for dashboard.html page that is displayed after successful authentication
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
