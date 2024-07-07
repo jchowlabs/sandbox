@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Experimenting</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div id="clock">00:00:00</div>
+<div id="menuOptions">
+    <div id="slider"></div>
+    <button onclick="selectOption(this)">Option 1</button>
+    <button onclick="selectOption(this)">Option 2</button>
+    <button onclick="selectOption(this)">Option 3</button>
+    <button onclick="selectOption(this)">Option 4</button>
+    <button onclick="selectOption(this)">Option 5</button>
+</div>
+<textarea id="inputBox"></textarea>
+<div id="typingCounter">Counter</div>
+<button id="clearButton">Clear</button>
+<script>
+let startTime;
+let typingTimer;
+document.getElementById('inputBox').addEventListener('input', function() {
+    if (!startTime) {
+        startTime = new Date();
+    } else {
+        clearTimeout(typingTimer);
+    }
+    typingTimer = setTimeout(() => {
+        let elapsedTime = new Date() - startTime; 
+        document.getElementById('typingCounter').innerText = `${(elapsedTime / 1000).toFixed(2)} seconds`;
+    }, 50); 
+});
+document.getElementById('inputBox').addEventListener('focus', function() {
+    startTime = null; 
+    document.getElementById('typingCounter').innerText = "0 seconds";
+});
+document.getElementById('clearButton').addEventListener('click', function() {
+    document.getElementById('inputBox').value = '';
+    document.getElementById('typingCounter').innerText = "0 seconds";
+    startTime = null; 
+});
+function updateClock() {
+  const now = new Date();
+  let hours = now.getHours();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; 
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  document.getElementById('clock').innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+}
+setInterval(updateClock, 1000);
+updateClock();
+function selectOption(selectedButton) {
+    const slider = document.getElementById('slider');
+    slider.style.width = selectedButton.offsetWidth + 'px';
+    slider.style.left = selectedButton.offsetLeft + 'px';
+    document.querySelectorAll('#menuOptions button').forEach(button => {
+        button.classList.remove('active');
+    });
+    selectedButton.classList.add('active');
+}
+window.onload = function() {
+        document.getElementById('inputBox').focus();
+ };
+</script>
+</body>
+</html>

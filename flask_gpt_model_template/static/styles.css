@@ -1,0 +1,95 @@
+body { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: start; 
+    height: 100vh; 
+    background-color: #ffffff; 
+    padding-top: 2vh; 
+}
+#clock { 
+    color: #303D4E; 
+    font-size: 90px; 
+    font-weight: bold; 
+    text-align: center; 
+    padding: 20px; 
+}
+#inputBox { 
+    margin-top: 20px; 
+    border: 2px solid #F2F2F4; 
+    border-radius: 5px; 
+    padding: 20px; 
+    width: 75%; 
+    height: 200px;
+    font-size: 80px; 
+    background-color: #f2f2f2;
+    caret-color: black;
+    overflow-y: auto;
+    border: 1px solid #275DC5
+}
+#menuOptions {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 5px 0;
+    padding: 0px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+#menuOptions button {
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #808080;
+    border-radius: 8px;
+}
+#menuOptions button:hover, #menuOptions button:focus {
+    background-color: #2c3e50; 
+    color: #ffffff; 
+    
+}
+#menuOptions button.active {
+    background-color: #f8f8f8; 
+    color: #2c3e50; 
+}
+#slider {
+    position: absolute;
+    bottom: -5px;
+    height: 5px;
+    width: 0;
+    background-color: #2c3e50;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}  
+#typingCounter {
+    margin-top: 20px;
+    color: #FFFFFF; 
+    background-color: #9F4BF2;; 
+    padding: 10px 20px;
+    border-radius: 50px; 
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block; 
+    font-size: 1rem;
+}
+#clearButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #808080;
+    border-radius: 8px;
+}
+#clearButton:hover, #menuOptions button:focus {
+    background-color: #2c3e50; 
+    color: #ffffff;
+    border-radius: 8px;
+}   
