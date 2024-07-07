@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .img-fluid {
+            max-width: 75%;
+            max-height: 75vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Prediction</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                {% if filename %}
+                    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="{{ filename }}" class="img-fluid">
+                    {% if classification is not none %}
+                        <p class="mt-3">The item you uploaded looks like a {{ classification }}, and has an estimated market price of $29.00.</p>
+                    {% endif %}
+                {% endif %}
+                <button onclick="location.href='/dashboard'" class="btn btn-primary mt-3">Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

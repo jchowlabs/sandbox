@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center title">Upload an Image</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <form method="POST" action="/prediction" enctype="multipart/form-data">
+                    <div class="upload-box" id="upload-box">
+                        <p id="upload-text">Drag and drop your image here.</p>
+                        <img id="preview" src="" alt="">
+                        <input type="file" class="form-control-file" id="file" name="file" required style="display: none;">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button type="button" class="btn btn-secondary" id="clear">Clear</button>
+                </form>
+                <button onclick="location.href='/'" class="btn btn-secondary mt-3">Home</button>
+                <button onclick="location.href='/dashboard'" class="btn btn-secondary mt-3">Dashboard</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var uploadBox = document.getElementById('upload-box');
+        var fileInput = document.getElementById('file');
+        var preview = document.getElementById('preview');
+        var uploadText = document.getElementById('upload-text');
+        var clearButton = document.getElementById('clear');
+    
+        uploadBox.addEventListener('click', function() {
+            fileInput.click();
+        });
+    
+        uploadBox.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = '#ccc';
+        });
+    
+        uploadBox.addEventListener('dragleave', function(e) {
+            this.style.backgroundColor = 'transparent';
+        });
+    
+        uploadBox.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = 'transparent';
+            fileInput.files = e.dataTransfer.files;
+            uploadText.style.display = 'none';
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        });
+    
+        clearButton.addEventListener('click', function() {
+            fileInput.value = '';
+            preview.src = '';
+            uploadText.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

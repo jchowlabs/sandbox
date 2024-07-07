@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">My Items</h1>
+        <div class="text-center">
+            <p><strong>Number of Items:</strong> {{ image_names|length }}</p>
+            <p><strong>Total Value:</strong> $0.00</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <button onclick="location.href='/'" class="btn btn-secondary mt-3">Home</button>
+                <button onclick="location.href='/uploads'" class="btn btn-secondary mt-3">Uploads</button>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            {% for image_name in image_names %}
+                <div class="col-md-4 mt-3">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='uploads/' + image_name) }}" class="card-img-top">
+                        <div class="card-body">
+                            <p><strong>Item:</strong> {{ image_name }}</p>
+                            <p><strong>Price:</strong> $0.00</p> 
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
