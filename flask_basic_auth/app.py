@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+import os
 
 # Creates our flask app - "app"
 app = Flask(__name__)
@@ -90,6 +91,11 @@ def dashboard():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+# Ensure the database file exists and create tables if not
+if not os.path.exists('database.db'):
+    with app.app_context():
+        db.create_all()
 
 if __name__ == '__main__':
     app.run()
