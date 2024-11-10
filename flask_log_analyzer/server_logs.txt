@@ -1,5 +1,0 @@
-2023-10-10 10:00:00 - INFO - Server started.
-2023-10-10 10:15:00 - ERROR - Internal server error occurred.
-2023-10-10 10:30:00 - INFO - Request received from 192.168.1.1.
-
-
